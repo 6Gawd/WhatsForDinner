@@ -1,14 +1,14 @@
 import firebase from 'firebase';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDVmd75_Y6GczxcQoc88agEsW5wta3QjgQ',
-  authDomain: 'speechrecorder-270920.firebaseapp.com',
-  databaseURL: 'https://speechrecorder-270920.firebaseio.com',
-  projectId: 'speechrecorder-270920',
-  storageBucket: 'speechrecorder-270920.appspot.com',
-  messagingSenderId: '822671506578',
-  appId: '1:822671506578:web:4044d0e32b79c69b073a4b',
-  measurementId: 'G-Z12Y8B3BCV'
+  apiKey: "AIzaSyD6vA7rr68uDCsGdIwoKMj6QPflFDK_deE",
+  authDomain: "whatsfordinner-a595e.firebaseapp.com",
+  databaseURL: "https://whatsfordinner-a595e.firebaseio.com",
+  projectId: "whatsfordinner-a595e",
+  storageBucket: "whatsfordinner-a595e.appspot.com",
+  messagingSenderId: "236985381389",
+  appId: "1:236985381389:web:f554fef55a4350face5b44",
+  measurementId: "G-VRG26JJQWZ"
 };
 
 firebase.initializeApp(firebaseConfig);

@@ -1,36 +1,3 @@
-// import React from 'react';
-// import {
-//   IonContent,
-//   IonHeader,
-//   IonPage,
-//   IonTitle,
-//   IonToolbar
-// } from '@ionic/react';
-// import ExploreContainer from '../components/ExploreContainer';
-// import './Tab1.css';
-
-// const Tab1: React.FC = () => {
-//   return (
-//     <IonPage>
-//       <IonHeader>
-//         <IonToolbar>
-//           <IonTitle>Ingredients</IonTitle>
-//         </IonToolbar>
-//       </IonHeader>
-//       <IonContent>
-//         <IonHeader collapse="condense">
-//           <IonToolbar>
-//             <IonTitle size="large">Tab 1</IonTitle>
-//           </IonToolbar>
-//         </IonHeader>
-//         <ExploreContainer name="Tab 1 page" />
-//       </IonContent>
-//     </IonPage>
-//   );
-// };
-
-// export default Tab1;
-
 import React, { useState } from 'react';
 import {
   IonList,
@@ -46,11 +13,12 @@ import {
   IonContent,
   IonItemDivider,
   IonFabButton,
-  IonButton
+  IonButton,
 } from '@ionic/react';
-import { truncate } from 'fs';
+// import { truncate } from 'fs';
 
 export const Tab1: React.FC = () => {
+  //React Hooks
   const [text, setText] = useState<string>();
   const [number, setNumber] = useState<number>();
   const [ingredients, setIngredients] = useState<Array<string>>([
@@ -80,17 +48,7 @@ export const Tab1: React.FC = () => {
               <IonCheckbox slot="start" />
             </IonItem>
             <IonItemOptions side="end">
-              <button color="danger" onClick={() => removeItem(food)}>
-                <span class="button-inner">
-                  <ion-icon
-                    name="trash"
-                    role="img"
-                    class="icon icon-ios ion-ios-trash"
-                    aria-label="trash"
-                  ></ion-icon>
-                  Delete
-                </span>
-              </button>
+              <IonItemOption ion-button color="danger" onClick={() => removeItem(food)}>Delete </IonItemOption>
             </IonItemOptions>
           </IonItemSliding>
         ))}

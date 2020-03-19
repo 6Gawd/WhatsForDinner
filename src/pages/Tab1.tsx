@@ -46,11 +46,12 @@ import {
   IonContent,
   IonItemDivider,
   IonFabButton,
-  IonButton
+  IonButton,
 } from '@ionic/react';
 import { truncate } from 'fs';
 
 export const Tab1: React.FC = () => {
+  //React Hooks
   const [text, setText] = useState<string>();
   const [number, setNumber] = useState<number>();
   const [ingredients, setIngredients] = useState<Array<string>>([
@@ -80,17 +81,7 @@ export const Tab1: React.FC = () => {
               <IonCheckbox slot="start" />
             </IonItem>
             <IonItemOptions side="end">
-              <button color="danger" onClick={() => removeItem(food)}>
-                <span class="button-inner">
-                  <ion-icon
-                    name="trash"
-                    role="img"
-                    class="icon icon-ios ion-ios-trash"
-                    aria-label="trash"
-                  ></ion-icon>
-                  Delete
-                </span>
-              </button>
+              <IonItemOption ion-button color="danger" onClick={() => removeItem(food)}>Delete </IonItemOption>
             </IonItemOptions>
           </IonItemSliding>
         ))}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import {
   IonList,
   IonItem,
@@ -17,23 +18,31 @@ import {
   IonPage,
   IonHeader,
   IonToolbar,
-  IonTitle
+  IonTitle,
+  IonLoading
 } from '@ionic/react';
 // import { truncate } from 'fs';
 import { loginUser } from '../fbConfig/fbConfig';
 import { toast } from '../toast';
+import { useDispatch } from 'react-redux';
+import { setUserState } from '../store/redux/userReducer';
 
 export const Login: React.FC = () => {
+  const history = useHistory();
+  const [busy, setBusy] = useState<boolean>(false);
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const login = async () => {
-    const res = await loginUser(email, password);
-    if (!res) {
-      toast('Error logging in');
-    } else {
-      toast('You have logged in');
+    setBusy(true);
+    const res: any = await loginUser(email, password);
+    if (res) {
+      dispatch(setUserState(res.user.email));
+      history.replace('/list');
+      toast('Login successful');
     }
+    setBusy(false);
   };
   //React Hooks
   const [input, setInput] = useState<string>('');
@@ -49,6 +58,7 @@ export const Login: React.FC = () => {
           <IonTitle>Login</IonTitle>
         </IonToolbar>
       </IonHeader>
+      <IonLoading message="Loading" duration={0} isOpen={busy} />
       <IonContent className="ion-padding">
         <IonInput
           placeholder="Email"
@@ -62,6 +72,9 @@ export const Login: React.FC = () => {
           type="password"
         />
         <IonButton onClick={login}>Login</IonButton>
+        <p>
+          Want to signup?<Link to="/register">Register</Link>
+        </p>
       </IonContent>
     </IonPage>
   );

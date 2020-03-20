@@ -12,7 +12,7 @@ import {
   IonItemDivider
 } from '@ionic/react';
 
-export const Tab2: React.FC = () => {
+export const Recipes: React.FC = () => {
   const [text, setText] = useState<string>();
   const [number, setNumber] = useState<number>();
 
@@ -20,7 +20,7 @@ export const Tab2: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>IonInput Examples</IonTitle>
+          <IonTitle>Recipes</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -93,4 +93,4 @@ export const Tab2: React.FC = () => {
   );
 };
 
-export default Tab2;
+export default Recipes;

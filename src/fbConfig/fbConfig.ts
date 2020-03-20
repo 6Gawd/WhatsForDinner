@@ -36,7 +36,7 @@ export const loginUser = async (email: string, password: string) => {
       .signInWithEmailAndPassword(email, password);
     //Authenticate user and do stuff
     console.log(res);
-    return true;
+    return res;
   } catch (error) {
     toast(error.message, 4000);
     return false;
@@ -50,23 +50,23 @@ export const registerUser = async (
   password: string
 ) => {
   try {
-    const res = await firebase
+    const res: any = await firebase
       .auth()
       .createUserWithEmailAndPassword(email, password);
 
-    // const syncUser = async response => {
-    //   const firestore = firebase.firestore();
-    //   await firestore
-    //     .collection('users')
-    //     .doc(response.user.uid)
-    //     .set({
-    //       firstName,
-    //       lastName,
-    //       email,
-    //     });
-    // };
-
-    return res;
+    const syncUser = async (response: any) => {
+      const firestore = firebase.firestore();
+      await firestore
+        .collection('users')
+        .doc(response.user.uid)
+        .set({
+          firstName,
+          lastName,
+          email,
+        });
+    };
+    syncUser(res)
+    return syncUser;
   } catch (error) {
     toast(error.message, 4000);
     return false;

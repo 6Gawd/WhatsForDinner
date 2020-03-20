@@ -24,21 +24,19 @@ import {
 // import { truncate } from 'fs';
 import { loginUser } from '../fbConfig/fbConfig';
 import { toast } from '../toast';
-import { useDispatch } from 'react-redux';
-import { setUserState } from '../store/redux/userReducer';
 
 export const Login: React.FC = () => {
   const history = useHistory();
   const [busy, setBusy] = useState<boolean>(false);
-  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [user, setUser] = useState<object>({})
 
   const login = async () => {
     setBusy(true);
     const res: any = await loginUser(email, password);
     if (res) {
-      dispatch(setUserState(res.user.email));
+      setUser(res.user)
       history.replace('/list');
       toast('Login successful');
     }

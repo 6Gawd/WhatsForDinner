@@ -15,6 +15,7 @@ import {
   IonFabButton,
   IonButton
 } from '@ionic/react';
+import { useSelector } from 'react-redux';
 // import { truncate } from 'fs';
 
 export const Tab1: React.FC = () => {
@@ -38,8 +39,11 @@ export const Tab1: React.FC = () => {
     setIngredients(newIngredients);
   };
 
+  const email = useSelector((state: any) => state.user.email);
+
   return (
     <IonContent>
+      <h3>Hello {email}</h3>
       <IonList>
         {ingredients.map(food => (
           <IonItemSliding key={food}>

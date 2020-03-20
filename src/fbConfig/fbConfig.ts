@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import { toast } from '../toast';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyD6vA7rr68uDCsGdIwoKMj6QPflFDK_deE',
@@ -15,6 +16,19 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 firebase.firestore();
 
+export function getCurrentUser() {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        resolve(user);
+      } else {
+        resolve(null);
+      }
+      unsubscribe();
+    });
+  });
+}
+
 export const loginUser = async (email: string, password: string) => {
   try {
     const res = await firebase
@@ -24,9 +38,25 @@ export const loginUser = async (email: string, password: string) => {
     console.log(res);
     return true;
   } catch (error) {
-    console.error(error);
+    toast(error.message, 4000);
     return false;
   }
+};
+
+export const registerUser = async (email: string, password: string) => {
+  try {
+    const res = await firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password);
+    return res;
+  } catch (error) {
+    toast(error.message, 4000);
+    return false;
+  }
+};
+
+export const logoutUser = async () => {
+  return firebase.auth().signOut();
 };
 
 export default firebase;

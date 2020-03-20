@@ -20,13 +20,20 @@ import {
   IonTitle
 } from '@ionic/react';
 // import { truncate } from 'fs';
+import { loginUser } from '../fbConfig/fbConfig';
+import { toast } from '../toast';
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const loginUser = () => {
-    console.log(email, password);
+  const login = async () => {
+    const res = await loginUser(email, password);
+    if (!res) {
+      toast('Error logging in');
+    } else {
+      toast('You have logged in');
+    }
   };
   //React Hooks
   const [input, setInput] = useState<string>('');
@@ -54,7 +61,7 @@ export const Login: React.FC = () => {
           onIonChange={(e: any) => setPassword(e.target.value)}
           type="password"
         />
-        <IonButton onClick={loginUser}>Login</IonButton>
+        <IonButton onClick={login}>Login</IonButton>
       </IonContent>
     </IonPage>
   );

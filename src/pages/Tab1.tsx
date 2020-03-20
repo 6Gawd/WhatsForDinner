@@ -13,14 +13,14 @@ import {
   IonContent,
   IonItemDivider,
   IonFabButton,
-  IonButton,
+  IonButton
 } from '@ionic/react';
 // import { truncate } from 'fs';
 
 export const Tab1: React.FC = () => {
   //React Hooks
   const [text, setText] = useState<string>();
-  const [number, setNumber] = useState<number>();
+  // const [number, setNumber] = useState<number>();
   const [ingredients, setIngredients] = useState<Array<string>>([
     'apples',
     'peanut butter'
@@ -48,29 +48,30 @@ export const Tab1: React.FC = () => {
               <IonCheckbox slot="start" />
             </IonItem>
             <IonItemOptions side="end">
-              <IonItemOption ion-button color="danger" onClick={() => removeItem(food)}>Delete </IonItemOption>
+              <IonItemOption
+                ion-button
+                color="danger"
+                onClick={() => removeItem(food)}
+              >
+                Delete{' '}
+              </IonItemOption>
             </IonItemOptions>
           </IonItemSliding>
         ))}
       </IonList>
       <IonItemDivider>Default Input with Placeholder</IonItemDivider>
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          submit();
-        }}
-      >
-        <IonList>
-          <IonItem>
-            <IonInput
-              value={text}
-              placeholder="Enter Input"
-              onIonChange={e => setText(e.detail.value!)}
-            ></IonInput>
-            <IonButton type="submit">Submit</IonButton>
-          </IonItem>
-        </IonList>
-      </form>
+      <IonList>
+        <IonItem>
+          <IonInput
+            value={text}
+            placeholder="Enter Input"
+            onIonChange={e => setText(e.detail.value!)}
+          ></IonInput>
+          <IonButton type="submit" onClick={submit}>
+            Submit
+          </IonButton>
+        </IonItem>
+      </IonList>
     </IonContent>
   );
 };

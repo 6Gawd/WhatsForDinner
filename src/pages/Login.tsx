@@ -39,7 +39,7 @@ export const Login: React.FC = () => {
     const res: any = await loginUser(email, password);
     if (res) {
       dispatch(setUserState(res.user.email));
-      history.replace('/tab1');
+      history.replace('/list');
       toast('Login successful');
     }
     setBusy(false);

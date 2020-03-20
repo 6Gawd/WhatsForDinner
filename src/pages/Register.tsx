@@ -38,11 +38,16 @@ export const Register: React.FC = () => {
     if (password !== cpassword) {
       return toast('Passwords must match');
     }
-    if (email.trim() === '' || password.trim() === '') {
-      return toast('Email and password are required');
+    if (
+      email.trim() === '' ||
+      password.trim() === '' ||
+      firstName.trim() === '' ||
+      lastName.trim() === ''
+    ) {
+      return toast('All Fields are required');
     }
 
-    const res = await registerUser(email, password);
+    const res = await registerUser(firstName, lastName, email, password);
     if (res) {
       toast('You have registered successfully');
     }

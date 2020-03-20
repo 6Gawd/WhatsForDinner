@@ -10,7 +10,7 @@ const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
     <div className="container">
       <strong>{name}</strong>
       <p>
-        Explore ALL THE BLESSINGS FROM THE GODS
+        HELLO!
         <a
           target="_blank"
           rel="noopener noreferrer"

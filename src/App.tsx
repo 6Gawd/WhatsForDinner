@@ -11,9 +11,9 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import List from './pages/List';
+import Recipes from './pages/Recipes';
+import UserProfile from './pages/UserProfile';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import { getCurrentUser } from './fbConfig/fbConfig';
@@ -48,7 +48,7 @@ const App: React.FC = () => {
     getCurrentUser().then((user: any) => {
       if (user) {
         dispatch(setUserState(user.email));
-        window.history.replaceState({}, '', '/tab1');
+        window.history.replaceState({}, '', '/list');
       } else {
         window.history.replaceState({}, '', '/login');
       }
@@ -61,9 +61,9 @@ const App: React.FC = () => {
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <Route path="/tab1" component={Tab1} exact={true} />
-            <Route path="/tab2" component={Tab2} exact={true} />
-            <Route path="/tab3" component={Tab3} />
+            <Route path="/list" component={List} exact={true} />
+            <Route path="/recipes" component={Recipes} exact={true} />
+            <Route path="/userprofile" component={UserProfile} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route

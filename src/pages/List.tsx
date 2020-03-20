@@ -18,7 +18,7 @@ import {
 import { useSelector } from 'react-redux';
 // import { truncate } from 'fs';
 
-export const Tab1: React.FC = () => {
+export const List: React.FC = () => {
   //React Hooks
   const [text, setText] = useState<string>();
   // const [number, setNumber] = useState<number>();
@@ -45,6 +45,7 @@ export const Tab1: React.FC = () => {
     <IonContent>
       <h3>Hello {email}</h3>
       <IonList>
+        <h2>Ingredients</h2>
         {ingredients.map(food => (
           <IonItemSliding key={food}>
             <IonItem>
@@ -80,4 +81,4 @@ export const Tab1: React.FC = () => {
   );
 };
 
-export default Tab1;
+export default List;

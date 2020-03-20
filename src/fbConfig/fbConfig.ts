@@ -43,11 +43,29 @@ export const loginUser = async (email: string, password: string) => {
   }
 };
 
-export const registerUser = async (email: string, password: string) => {
+export const registerUser = async (
+  firstName: string,
+  lastName: string,
+  email: string,
+  password: string
+) => {
   try {
     const res = await firebase
       .auth()
       .createUserWithEmailAndPassword(email, password);
+
+    // const syncUser = async response => {
+    //   const firestore = firebase.firestore();
+    //   await firestore
+    //     .collection('users')
+    //     .doc(response.user.uid)
+    //     .set({
+    //       firstName,
+    //       lastName,
+    //       email,
+    //     });
+    // };
+
     return res;
   } catch (error) {
     toast(error.message, 4000);

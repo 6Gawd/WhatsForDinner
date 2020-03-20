@@ -9,11 +9,11 @@ import {
   IonLoading
 } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
-import './Tab3.css';
+import './UserProfile.css';
 import { logoutUser } from '../fbConfig/fbConfig';
 import { useHistory } from 'react-router';
 
-const Tab3: React.FC = () => {
+const UserProfile: React.FC = () => {
   const [busy, setBusy] = useState(false);
   const history = useHistory();
   const logout = async () => {
@@ -26,7 +26,7 @@ const Tab3: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 3</IonTitle>
+          <IonTitle>Your Profile</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
@@ -43,4 +43,4 @@ const Tab3: React.FC = () => {
   );
 };
 
-export default Tab3;
+export default UserProfile;

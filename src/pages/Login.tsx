@@ -53,6 +53,7 @@ export const Login: React.FC = () => {
 
   useEffect(() => {
     console.log('user id:', user)
+    //this works! we're getting the user - uid.
   }, [user]);
 
   return (

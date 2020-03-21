@@ -24,19 +24,25 @@ import {
 // import { truncate } from 'fs';
 import { loginUser } from '../fbConfig/fbConfig';
 import { toast } from '../toast';
+import { User } from '../App'
 
 export const Login: React.FC = () => {
   const history = useHistory();
   const [busy, setBusy] = useState<boolean>(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [user, setUser] = useState<object>({})
+  const [user, setUser] = useState<User>({
+    id:'',
+    firstName: '',
+    lastName: '',
+    email: ''
+  })
 
   const login = async () => {
     setBusy(true);
-    const res: any = await loginUser(email, password);
-    if (res) {
-      setUser(res.user)
+    const {uid}: any = await loginUser(email, password);
+    if (uid) {
+      setUser(uid)
       history.replace('/list');
       toast('Login successful');
     }
@@ -46,8 +52,9 @@ export const Login: React.FC = () => {
   const [input, setInput] = useState<string>('');
 
   useEffect(() => {
-    console.log(input);
-  }, [input]);
+    console.log('user id:', user)
+    //this works! we're getting the user - uid.
+  }, [user]);
 
   return (
     <IonPage>

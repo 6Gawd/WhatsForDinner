@@ -35,8 +35,8 @@ export const loginUser = async (email: string, password: string) => {
       .auth()
       .signInWithEmailAndPassword(email, password);
     //Authenticate user and do stuff
-    console.log(res);
-    return res;
+      console.log("loginUser", res.user);
+      return res.user;
   } catch (error) {
     toast(error.message, 4000);
     return false;

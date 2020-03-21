@@ -36,18 +36,14 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import { useDispatch } from 'react-redux';
-import { setUserState } from './store/redux/userReducer';
 
 const App: React.FC = () => {
   const [busy, setBusy] = useState(true);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     setBusy(true);
     getCurrentUser().then((user: any) => {
       if (user) {
-        dispatch(setUserState(user.email));
         window.history.replaceState({}, '', '/list');
       } else {
         window.history.replaceState({}, '', '/login');
@@ -73,17 +69,17 @@ const App: React.FC = () => {
             />
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
-            <IonTabButton tab="tab1" href="/tab1">
+            <IonTabButton tab="list" href="/list">
               <IonIcon icon={triangle} />
-              <IonLabel>Tab 1</IonLabel>
+              <IonLabel>List</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="tab2" href="/tab2">
+            <IonTabButton tab="recipes" href="/recipes">
               <IonIcon icon={ellipse} />
-              <IonLabel>Tab 2</IonLabel>
+              <IonLabel>Recipes</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="tab3" href="/tab3">
+            <IonTabButton tab="userprofile" href="/userprofile">
               <IonIcon icon={square} />
-              <IonLabel>Tab 3</IonLabel>
+              <IonLabel>Profile</IonLabel>
             </IonTabButton>
           </IonTabBar>
         </IonTabs>

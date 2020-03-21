@@ -13,14 +13,15 @@ import {
   IonContent,
   IonItemDivider,
   IonFabButton,
-  IonButton,
-  IonPage
+  IonButton
 } from '@ionic/react';
+import { useSelector } from 'react-redux';
+// import { truncate } from 'fs';
 
-const List: React.FC = () => {
+export const ShoppingList: React.FC = () => {
   //React Hooks
   const [text, setText] = useState<string>();
-  // // const [number, setNumber] = useState<number>();
+  // const [number, setNumber] = useState<number>();
   const [ingredients, setIngredients] = useState<Array<string>>([
     'apples',
     'peanut butter'
@@ -38,11 +39,11 @@ const List: React.FC = () => {
     setIngredients(newIngredients);
   };
 
+  const email = useSelector((state: any) => state.user.email);
 
   return (
-    <IonPage>
     <IonContent>
-      <h3>Hello </h3>
+      <h3>Hello {email}</h3>
       <IonList>
         <h2>Ingredients</h2>
         {ingredients.map(food => (
@@ -77,8 +78,7 @@ const List: React.FC = () => {
         </IonItem>
       </IonList>
     </IonContent>
-    </IonPage>
   );
 };
 
-export default List;
+export default ShoppingList;

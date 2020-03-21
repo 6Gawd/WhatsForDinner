@@ -20,8 +20,9 @@ const UserProfile: React.FC = () => {
     setBusy(true);
     await logoutUser();
     setBusy(false);
-    history.replace('/');
+    history.replace('/login');
   };
+
   return (
     <IonPage>
       <IonHeader>

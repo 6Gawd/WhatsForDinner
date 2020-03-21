@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, Route } from 'react-router-dom';
+import firebase from 'firebase'
 import {
   IonApp,
   IonIcon,
@@ -37,27 +38,72 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
+export interface User {
+  id: any,
+  firstName: string,
+  lastName: string,
+  email: string
+}
+
+// interface LogInSignUpData {
+//   email: string;
+//   displayName: string;
+//   password: string;
+// }
+
+// interface UserData {
+//   email: string;
+//   uid?: string;
+//   displayName: string;
+//   photoURL: string;
+//   password: string;
+//   favorites: object;
+//   favoritesArray: Array<FavoriteObj>;
+// }
+
 const App: React.FC = () => {
   const [busy, setBusy] = useState(true);
+  const [user, setUser] = useState<User>()
 
-  useEffect(() => {
-    setBusy(true);
-    getCurrentUser().then((user: any) => {
-      if (user) {
-        window.history.replaceState({}, '', '/list');
-      } else {
-        window.history.replaceState({}, '', '/login');
-      }
-      setBusy(false);
-    });
-  }, []);
+  // const loggedIn: any = (user: object) => {
+  //   setUser(user)
+  // }
+
+  // useEffect(() => {
+  //   setBusy(true);
+  //   getCurrentUser().then((user: any) => {
+  //     if (user) {
+  //       window.history.replaceState({}, '', '/list');
+  //     } else {
+  //       window.history.replaceState({}, '', '/login');
+  //     }
+  //     setBusy(false);
+  //   });
+  // }, []);
+
+//LESLIE/MIKES
+  // useEffect(() => {
+  //   setBusy(true);
+  //   firebase.auth().onAuthStateChanged(async user => {
+  // if (user) {
+  //   console.log('Currently logged in!');
+  //   let userObj = {
+  //     email: user.email || '',
+  //     uid: user.uid || ''
+  //   };
+  // }
+
+  //   })
+  //   setBusy(false)
+  // }, {})
+  console.log("App user", user)
 
   return (
     <IonApp>
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <Route path="/list" component={List} exact={true} />
+            <Route path="/list" component={List} exact={true} user={user} />
             <Route path="/recipes" component={Recipes} exact={true} />
             <Route path="/userprofile" component={UserProfile} />
             <Route path="/login" component={Login} />

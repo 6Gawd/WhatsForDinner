@@ -16,6 +16,7 @@ import {
   IonButton,
   IonPage
 } from '@ionic/react';
+  import { User } from '../App';
 
 const List: React.FC = () => {
   //React Hooks
@@ -25,6 +26,12 @@ const List: React.FC = () => {
     'apples',
     'peanut butter'
   ]);
+    const [user, setUser] = useState<User>({
+    id:'',
+    firstName: '',
+    lastName: '',
+    email: ''
+  })
 
   const submit = () => {
     if (text) {
@@ -38,6 +45,7 @@ const List: React.FC = () => {
     setIngredients(newIngredients);
   };
 
+  console.log("List", user)
 
   return (
     <IonPage>
